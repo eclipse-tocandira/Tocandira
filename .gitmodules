@@ -1,0 +1,15 @@
+[submodule "back"]
+	path = back
+	url = git@github.com:Aimirim-STI/Tocandira-back.git
+[submodule "front"]
+	path = front
+	url = git@github.com:Aimirim-STI/Tocandira-front.git
+[submodule "api-gateway"]
+	path = api-gateway
+	url = git@github.com:Aimirim-STI/Tocandira-api-gateway.git
+[submodule "opcua_exporter"]
+	path = opcua_exporter
+	url = git@github.com:Aimirim-STI/opcua_exporter.git
+[submodule "watchdog"]
+	path = watchdog
+	url = git@github.com:Aimirim-STI/Container-Watchdog.git
