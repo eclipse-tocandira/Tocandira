@@ -1,0 +1,3 @@
+# Ignore folders that persist data in commits.
+data/**
+images
