@@ -1,0 +1,148 @@
+version: "3"
+networks:
+  kong-net:
+    driver: bridge
+
+services:
+
+  exporter:
+    container_name: exporter
+    build:
+      dockerfile: Dockerfile
+      context: ./opcua_exporter
+    networks:
+      - kong-net
+    restart: always
+    user: $USER_ID
+    volumes: 
+      - ./config:/config
+    ports:
+      - "9686"
+    command: [
+      -config, /config/opcua_exporter.yml, 
+      -read-timeout, "$EXPORTER_TIMEOUT",
+      -max-timeouts, "$EXPORTER_MAX_TIMEOUT" ]
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+    
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.39.0
+    networks:
+      - kong-net
+    restart: always
+    user: $USER_ID
+    ports:
+      - "9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus_rules.yml:/etc/prometheus/prometheus_rules.yml
+      - ./data/prometheus:/prometheus
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=$DB_RETENTION_TIME'
+      - '--storage.tsdb.retention.size=$DB_MAX_SIZE'
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+    
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-oss:9.1.7
+    networks:
+      - kong-net
+    restart: always
+    environment:
+      GF_SERVER_ROOT_URL: https://$HOST_IP
+    user: $USER_ID
+    ports:
+      - "3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+  
+  kong:
+    container_name: kong
+    image: kong:0.1.0
+    networks:
+      - kong-net
+    restart: always
+    user: $USER_ID
+    environment:
+      KONG_IP: $HOST_IP
+      KONG_PROXY_LISTEN: kong:8443 ssl
+      NGINX_HTTP_PORT: "8000"
+    ports:
+      - "8080:8000"
+      - "443:8443"
+    volumes:
+      - ./config/kong.yml:/etc/kong/kong.yml
+      - ./config/certificates.yml:/home/kong/certificates.yml
+      - ./data/kong:/etc/kong/certificates
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./front
+    networks:
+      - kong-net
+    restart: always
+    volumes:
+      - ./config/frontend.json:/usr/share/nginx/html/static/config.json
+    user: $USER_ID
+    ports:
+      - "8000"
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+  
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: ./back
+    networks:
+      - kong-net
+    restart: always
+    user: $USER_ID
+    environment:
+      CONF_API_NAME: $CONF_API_NAME
+      OPCUA_FILEURL: $OPCUA_FILEURL
+      OPCUA_TESTER_ENDPOINT: $OPCUA_TESTER_ENDPOINT
+      FBOOT_SSH_IP: $FBOOT_SSH_IP
+      FBOOT_SSH_USERNAME: $FBOOT_SSH_USERNAME
+      FBOOT_FILEURL: $FBOOT_FILEURL
+    ports:
+      - "8000"
+    volumes:
+      - ./data/back:/code/db
+      - ./config:/code/external_config
+    command: [ --host, backend ]
+    logging:
+      options:
+        max-size: $LOG_RETENTION
+
+  watchdog:
+    container_name: watchdog
+    build:
+      dockerfile: Dockerfile
+      context: ./watchdog
+    networks:
+      - kong-net
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config:/home/config
+    logging:
+      options:
+        max-size: $LOG_RETENTION
