@@ -125,6 +125,7 @@ services:
     ports:
       - "8000"
     volumes:
+      - $HOME/.ssh:/home/back/.ssh
       - ./data/back:/code/db
       - ./config:/code/external_config
     command: [ --host, backend ]
