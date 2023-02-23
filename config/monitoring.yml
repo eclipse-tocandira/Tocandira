@@ -1,0 +1,20 @@
+# Copyright (c) 2017 Aimirim STI.
+
+services:
+
+  orchestrator:
+    container_name: orchestrator
+    watch_files:
+      - ./monitoring.yml
+
+  prometheus:
+    container_name: prometheus
+    watch_files:
+      - ./prometheus.yml
+
+  exporter:
+    container_name: exporter
+    watch_files:
+      - ./opcua_exporter.yml
+
+

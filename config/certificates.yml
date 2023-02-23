@@ -1,0 +1,10 @@
+# Copyright (c) 2017 Aimirim STI.
+
+certificate:
+  expiration_days: 7300
+  subject:
+    country: BR
+    state: Minas Gerais
+    location: Uberlândia
+    company: Aimirim STI
+    email: contato@aimirimsti.com.br
