@@ -21,7 +21,8 @@ services:
     command: [
       -config, /config/opcua_exporter.yml, 
       -read-timeout, "$EXPORTER_TIMEOUT",
-      -max-timeouts, "$EXPORTER_MAX_TIMEOUT" ]
+      -max-timeouts, "$EXPORTER_MAX_TIMEOUT",
+      -force-read, "$EXPORTER_FORCE_READ" ]
     logging:
       options:
         max-size: $LOG_RETENTION
