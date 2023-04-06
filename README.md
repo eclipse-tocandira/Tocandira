@@ -28,3 +28,6 @@ Tocandira will gather those tools and help you configure a scalable and open sou
 We think that the industrial world is too tightened to its vendors thus making it look like the vendors actually own the industrial data, and that needs to change.
 
 It is needed to spread the world that a modern observability stack can help the industry too and without coupling it to a complete update of the hardwares involved. With the open source community we could promote a change in this market, popularizing Tocandira might be the push that these traditional vendors need to change their behavior and start contributing as well. 
+
+## MDL Archteture
+![MDL](./docs/MDL_Arch.svg)
