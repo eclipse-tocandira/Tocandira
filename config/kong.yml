@@ -8,8 +8,6 @@ services:
 
   - name: frontend
     url: http://frontend:8000
-  - name: frontend_static
-    url: http://frontend:8000/static
 
   - name: backend
     url: http://backend:8000
@@ -23,12 +21,9 @@ routes:
 
   - name: frontend
     service: frontend
+    preserve_host: true
     paths:
     - /admin
-  - name: frontend_static
-    service: frontend_static
-    paths:
-    - /static
 
   - name: backend
     service: backend

@@ -100,7 +100,7 @@ services:
       - kong-net
     restart: always
     volumes:
-      - ./config/frontend.json:/usr/share/nginx/html/static/config.json
+      - ./config/frontend.json:/usr/share/nginx/html/config.json
     user: $USER_ID
     ports:
       - "8000"
