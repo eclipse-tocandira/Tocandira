@@ -1,6 +1,0 @@
-{
-    "api_protocol":"https://",
-    "api_ip": "192.168.100.22",
-    "api_root": "/admin/api/v0",
-    "root": "/admin"
-}

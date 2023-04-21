@@ -99,9 +99,10 @@ services:
     networks:
       - kong-net
     restart: always
-    volumes:
-      - ./config/frontend.json:/usr/share/nginx/html/config.json
     user: $USER_ID
+    environment:
+      ROOT_PATH: "/admin"
+      BACKEND_URL: "https://$HOST_IP/$CONF_API_NAME"
     ports:
       - "8000"
     logging:
