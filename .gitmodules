@@ -7,9 +7,6 @@
 [submodule "api-gateway"]
 	path = api-gateway
 	url = https://github.com/Aimirim-STI/Tocandira-api-gateway.git
-[submodule "opcua_exporter"]
-	path = opcua_exporter
-	url = https://github.com/Aimirim-STI/opcua_exporter.git
 [submodule "watchdog"]
 	path = watchdog
 	url = https://github.com/Aimirim-STI/Container-Watchdog.git
