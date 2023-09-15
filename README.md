@@ -15,7 +15,7 @@ Tocandira was build focusing on:
 ## Our Motivations
 In the experiences of Aimirim STI company through the years building and commissioning advanced controls, optimizations and digital twins for industries, we witness several gaps involving connectivity and integration between the plant operational technologies and information technologies mainly when the subject is to retrieve data from industrial systems and store them in a common place to enable data analysis and insights.
 
-While the IT world has a lot of companies investing in open source development with robust applications built on top of them with years of stable operation and continuous improvement of the operational technologies in industrial plants are becoming outdated and useless. It appears to us that those systems cared more about locking everything to themselves other than enabling interoperability to provide application of new technologies that the industry 4.0 needs.
+While the IT world has a lot of companies investing in open source development with robust applications built on top of them with years of stable operation and continuous improvement of the operational technologies, in industrial plants they are becoming outdated and useless. It appears to us that those systems cared more about locking everything to themselves other than enabling interoperability to provide application of new technologies that the industry 4.0 needs.
 
 Seeing that we came to a simple question that the industrial vendors forgot to answer: **“To whom does that data belong?”**.
 For us at Aimirim those data belongs to the industry itself, and therefore they should be able to gather, save, and access it as pleased.
