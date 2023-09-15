@@ -4,28 +4,6 @@ networks:
     driver: bridge
 
 services:
-
-  exporter:
-    container_name: exporter
-    build:
-      dockerfile: Dockerfile
-      context: ./opcua_exporter
-    networks:
-      - kong-net
-    restart: always
-    user: $USER_ID
-    volumes: 
-      - ./config:/config
-    ports:
-      - "9686"
-    command: [
-      -config, /config/opcua_exporter.yml, 
-      -read-timeout, "$EXPORTER_TIMEOUT",
-      -max-timeouts, "$EXPORTER_MAX_TIMEOUT",
-      -force-read, "$EXPORTER_FORCE_READ" ]
-    logging:
-      options:
-        max-size: $LOG_RETENTION
     
   prometheus:
     container_name: prometheus
@@ -122,9 +100,6 @@ services:
       CONF_API_NAME: $CONF_API_NAME
       OPCUA_FILEURL: $OPCUA_FILEURL
       PROMETHEUS_FILEURL: $PROMETHEUS_FILEURL
-      OPCUA_TESTER_ENDPOINT: $OPCUA_TESTER_ENDPOINT
-      FBOOT_SSH_IP: $FBOOT_SSH_IP
-      FBOOT_SSH_USERNAME: $FBOOT_SSH_USERNAME
       FBOOT_FILEURL: $FBOOT_FILEURL
       CONF_CYCLETIME: $FBOOT_CYCLETIME
     ports:

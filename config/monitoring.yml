@@ -11,10 +11,5 @@ services:
     container_name: prometheus
     watch_files:
       - ./prometheus.yml
-
-  exporter:
-    container_name: exporter
-    watch_files:
-      - ./opcua_exporter.yml
-
+      - ./prometheus_rules.yml
 
