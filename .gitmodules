@@ -10,3 +10,6 @@
 [submodule "watchdog"]
 	path = watchdog
 	url = https://github.com/Aimirim-STI/Container-Watchdog.git
+[submodule "dashboard"]
+	path = dashboard
+	url = https://github.com/Aimirim-STI/Tocandira-Dashboard.git
