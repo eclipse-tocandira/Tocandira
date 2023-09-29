@@ -64,6 +64,7 @@ services:
       - "3000"
     volumes:
       - ./data/grafana:/var/lib/grafana
+      - ./config/grafana_db.yml:/etc/grafana/provisioning/datasources/grafana_db.yml
     logging:
       options:
         max-size: $LOG_RETENTION
