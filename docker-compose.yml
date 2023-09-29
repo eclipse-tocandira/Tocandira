@@ -53,7 +53,7 @@ services:
     
   grafana:
     container_name: grafana
-    image: grafana/grafana-oss:9.1.7
+    image: tocandira_dashboard:0.1.0
     networks:
       - kong-net
     restart: always
