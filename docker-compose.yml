@@ -48,9 +48,7 @@ services:
         max-size: $LOG_RETENTION
   
   kong:
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+    image: tocandira_kong:0.1.1
     networks:
       - kong-net
     restart: always
@@ -72,9 +70,7 @@ services:
 
   frontend:
     container_name: frontend
-    build:
-      dockerfile: Dockerfile
-      context: ./front
+    image: tocandira_frontend:0.1.0
     networks:
       - kong-net
     restart: always
@@ -90,9 +86,7 @@ services:
   
   backend:
     container_name: backend
-    build:
-      dockerfile: Dockerfile
-      context: ./back
+    image: tocandira_backend:0.1.0
     networks:
       - kong-net
     restart: always
@@ -116,9 +110,7 @@ services:
 
   watchdog:
     container_name: watchdog
-    build:
-      dockerfile: Dockerfile
-      context: ./watchdog
+    image: tocandira_watchdog:0.2.0
     networks:
       - kong-net
     restart: always
