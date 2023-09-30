@@ -29,8 +29,8 @@ services:
       options:
         max-size: $LOG_RETENTION
     
-  grafana:
-    container_name: grafana
+  dashboard:
+    container_name: dashboard
     image: tocandira_dashboard:0.1.0
     networks:
       - kong-net
