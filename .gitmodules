@@ -1,15 +1,15 @@
 [submodule "back"]
 	path = back
-	url = https://github.com/Aimirim-STI/Tocandira-back.git
+	url = https://github.com/eclipse-tocandira/Tocandira-back.git
 [submodule "front"]
 	path = front
-	url = https://github.com/Aimirim-STI/Tocandira-front.git
+	url = https://github.com/eclipse-tocandira/Tocandira-front.git
 [submodule "api-gateway"]
 	path = api-gateway
-	url = https://github.com/Aimirim-STI/Tocandira-api-gateway.git
+	url = https://github.com/eclipse-tocandira/Tocandira-api-gateway.git
 [submodule "watchdog"]
 	path = watchdog
-	url = https://github.com/Aimirim-STI/Container-Watchdog.git
+	url = https://github.com/eclipse-tocandira/Container-Watchdog.git
 [submodule "dashboards"]
 	path = dashboards
 	url = https://github.com/eclipse-tocandira/Tocandira-Dashboard.git
