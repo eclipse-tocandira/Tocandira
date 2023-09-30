@@ -94,7 +94,7 @@ services:
     environment:
       CONF_API_NAME: $CONF_API_NAME
       OPCUA_FILEURL: $OPCUA_FILEURL
-      PROMETHEUS_FILEURL: $PROMETHEUS_FILEURL
+      PROMETHEUS_FILEURL: /code/external_config/prometheus.yml
       FBOOT_FILEURL: $FBOOT_FILEURL
       CONF_CYCLETIME: $FBOOT_CYCLETIME
     ports:
