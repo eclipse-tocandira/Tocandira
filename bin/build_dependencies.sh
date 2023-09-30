@@ -4,7 +4,8 @@ set -e
 
 # Reset the submobules to this current commited version
 ./reset_dependencies.sh
-# Build most submodules
+# Enable buildx
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+# Build submodules
 docker-compose -f build.yml build --no-cache
-# Build Dashboard submodule
-cd ../dashboard && ./build_image.sh && cd ../bin

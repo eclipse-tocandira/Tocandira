@@ -29,3 +29,9 @@ services:
       context: ../watchdog
     image: tocandira_watchdog:0.2.0
     
+  dashboard:
+    container_name: dashboard
+    build:
+      dockerfile: Dockerfile
+      context: ../dashboards
+    image: tocandira_dashboard:0.1.0
