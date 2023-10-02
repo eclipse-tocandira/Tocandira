@@ -13,14 +13,14 @@ services:
     build:
       dockerfile: Dockerfile
       context: ../front
-    image: tocandira_frontend:0.1.0
+    image: tocandira_frontend:0.2.0
     
   backend:
     container_name: backend
     build:
       dockerfile: Dockerfile
       context: ../back
-    image: tocandira_backend:0.1.0
+    image: tocandira_backend:0.2.0
     
   watchdog:
     container_name: watchdog

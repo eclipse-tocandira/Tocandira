@@ -70,7 +70,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: tocandira_frontend:0.1.0
+    image: tocandira_frontend:0.2.0
     networks:
       - kong-net
     restart: always
@@ -86,17 +86,14 @@ services:
   
   backend:
     container_name: backend
-    image: tocandira_backend:0.1.0
+    image: tocandira_backend:0.2.0
     networks:
       - kong-net
     restart: always
     user: $USER_ID
     environment:
       CONF_API_NAME: $CONF_API_NAME
-      OPCUA_FILEURL: $OPCUA_FILEURL
       PROMETHEUS_FILEURL: /code/external_config/prometheus.yml
-      FBOOT_FILEURL: $FBOOT_FILEURL
-      CONF_CYCLETIME: $FBOOT_CYCLETIME
     ports:
       - "8000"
     volumes:
