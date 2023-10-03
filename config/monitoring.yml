@@ -2,8 +2,8 @@
 
 services:
 
-  orchestrator:
-    container_name: orchestrator
+  watchdog:
+    container_name: watchdog
     watch_files:
       - ./monitoring.yml
 
