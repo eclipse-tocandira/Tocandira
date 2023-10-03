@@ -8,4 +8,4 @@ set -e
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 # Build submodules
-docker-compose -f build.yml build --no-cache
+docker-compose -f build.yml build --no-cache $@
