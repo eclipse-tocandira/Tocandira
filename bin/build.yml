@@ -6,32 +6,32 @@ services:
     build:
       context: ../api-gateway
       dockerfile: Dockerfile
-    image: tocandira_kong:0.1.1
+    image: aimirim/tocandira-kong:0.1.1
     
   frontend:
     container_name: frontend
     build:
       dockerfile: Dockerfile
       context: ../front
-    image: tocandira_frontend:0.2.0
+    image: aimirim/tocandira-front:0.2.0
     
   backend:
     container_name: backend
     build:
       dockerfile: Dockerfile
       context: ../back
-    image: tocandira_backend:0.2.0
+    image: aimirim/tocandira-back:0.2.0
     
   watchdog:
     container_name: watchdog
     build:
       dockerfile: Dockerfile
       context: ../watchdog
-    image: tocandira_watchdog:0.2.0
+    image: aimirim/tocandira-watchdog:0.2.0
     
   dashboard:
     container_name: dashboard
     build:
       dockerfile: Dockerfile
       context: ../dashboards
-    image: tocandira_dashboard:0.1.0
+    image: aimirim/tocandira-dashboard:0.1.0

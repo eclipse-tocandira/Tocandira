@@ -31,7 +31,7 @@ services:
     
   dashboard:
     container_name: dashboard
-    image: tocandira_dashboard:0.1.0
+    image: aimirim/tocandira-dashboard:0.1.0
     networks:
       - kong-net
     restart: always
@@ -48,7 +48,7 @@ services:
         max-size: $LOG_RETENTION
   
   kong:
-    image: tocandira_kong:0.1.1
+    image: aimirim/tocandira-kong:0.1.1
     networks:
       - kong-net
     restart: always
@@ -70,7 +70,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: tocandira_frontend:0.2.0
+    image: aimirim/tocandira-front:0.2.0
     networks:
       - kong-net
     restart: always
@@ -86,7 +86,7 @@ services:
   
   backend:
     container_name: backend
-    image: tocandira_backend:0.2.0
+    image: aimirim/tocandira-back:0.2.0
     networks:
       - kong-net
     restart: always
@@ -107,7 +107,7 @@ services:
 
   watchdog:
     container_name: watchdog
-    image: tocandira_watchdog:0.2.0
+    image: aimirim/tocandira-watchdog:0.2.0
     networks:
       - kong-net
     restart: always
