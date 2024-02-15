@@ -29,9 +29,9 @@ services:
       options:
         max-size: $LOG_RETENTION
     
-  grafana:
-    container_name: grafana
-    image: grafana/grafana-oss:9.1.7
+  dashboard:
+    container_name: dashboard
+    image: grafana/grafana:10.2.4
     networks:
       - kong-net
     restart: always
@@ -42,14 +42,13 @@ services:
       - "3000"
     volumes:
       - ./data/grafana:/var/lib/grafana
+      - ./config/grafana_db.yml:/etc/grafana/provisioning/datasources/grafana_db.yml
     logging:
       options:
         max-size: $LOG_RETENTION
   
   kong:
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+    image: aimirim/tocandira-kong:0.1.1
     networks:
       - kong-net
     restart: always
@@ -71,9 +70,7 @@ services:
 
   frontend:
     container_name: frontend
-    build:
-      dockerfile: Dockerfile
-      context: ./front
+    image: aimirim/tocandira-front:0.2.0
     networks:
       - kong-net
     restart: always
@@ -89,19 +86,14 @@ services:
   
   backend:
     container_name: backend
-    build:
-      dockerfile: Dockerfile
-      context: ./back
+    image: aimirim/tocandira-back:0.2.0
     networks:
       - kong-net
     restart: always
     user: $USER_ID
     environment:
       CONF_API_NAME: $CONF_API_NAME
-      OPCUA_FILEURL: $OPCUA_FILEURL
-      PROMETHEUS_FILEURL: $PROMETHEUS_FILEURL
-      FBOOT_FILEURL: $FBOOT_FILEURL
-      CONF_CYCLETIME: $FBOOT_CYCLETIME
+      PROMETHEUS_FILEURL: /code/external_config/prometheus.yml
     ports:
       - "8000"
     volumes:
@@ -115,9 +107,7 @@ services:
 
   watchdog:
     container_name: watchdog
-    build:
-      dockerfile: Dockerfile
-      context: ./watchdog
+    image: aimirim/tocandira-watchdog:0.2.0
     networks:
       - kong-net
     restart: always

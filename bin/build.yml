@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+  kong:
+    build:
+      context: ../api-gateway
+      dockerfile: Dockerfile
+    image: aimirim/tocandira-kong:0.1.1
+    
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile
+      context: ../front
+    image: aimirim/tocandira-front:0.2.0
+    
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: ../back
+    image: aimirim/tocandira-back:0.2.0
+    
+  watchdog:
+    container_name: watchdog
+    build:
+      dockerfile: Dockerfile
+      context: ../watchdog
+    image: aimirim/tocandira-watchdog:0.2.0
+    
