@@ -31,7 +31,7 @@ services:
     
   dashboard:
     container_name: dashboard
-    image: aimirim/tocandira-dashboard:0.1.0
+    image: grafana/grafana:10.2.4
     networks:
       - kong-net
     restart: always
